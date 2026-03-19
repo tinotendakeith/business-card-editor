@@ -319,12 +319,56 @@ textarea {
 }
 
 @media (max-width: 720px) {
+    .app-shell {
+        display: flex;
+        flex-direction: column;
+    }
+
     .sidebar,
     .workspace {
         padding: 16px;
     }
 
+    .workspace {
+        order: -1;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding-bottom: 8px;
+        background: linear-gradient(180deg, rgba(247, 244, 237, 0.98), rgba(247, 248, 251, 0.92));
+        backdrop-filter: blur(12px);
+    }
+
+    .workspace-header {
+        display: none;
+    }
+
+    .canvas-frame {
+        min-height: auto;
+        padding: 10px;
+        border-radius: 24px;
+    }
+
+    .preview-stack {
+        width: 100%;
+    }
+
+    #cardCanvas,
+    .svg-preview-host {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 34vh;
+    }
+
     .form-grid {
         grid-template-columns: 1fr;
+    }
+
+    .app-shell.has-upload .brand {
+        display: none;
+    }
+
+    .app-shell.has-upload .sidebar {
+        padding-top: 8px;
     }
 }

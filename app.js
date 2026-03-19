@@ -20,6 +20,7 @@ const state = {
 
 const canvas = document.getElementById("cardCanvas");
 const ctx = canvas.getContext("2d");
+const appShell = document.querySelector(".app-shell");
 const fileUpload = document.getElementById("fileUpload");
 const analyzeButton = document.getElementById("analyzeButton");
 const addLayerButton = document.getElementById("addLayerButton");
@@ -76,6 +77,10 @@ function setModeLabel(message) {
     sourceMode.textContent = `Mode: ${message}`;
 }
 
+
+function updateLoadedLayoutState(isLoaded) {
+    appShell.classList.toggle("has-upload", Boolean(isLoaded));
+}
 function disableEditor(disabled) {
     for (const field of formFields) {
         field.disabled = disabled;
@@ -227,6 +232,7 @@ function finalizeLoadedFile() {
     analyzeButton.disabled = false;
     exportPngButton.disabled = false;
     exportPdfButton.disabled = false;
+    updateLoadedLayoutState(true);
     renderLayers();
     syncForm();
     renderCanvas();
@@ -798,6 +804,7 @@ function renderSvgPreview() {
     }
 }
 function drawEmptyCanvas() {
+    updateLoadedLayoutState(false);
     canvas.width = 1200;
     canvas.height = 675;
     updateCanvasDisplaySize();
